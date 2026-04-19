@@ -19,7 +19,7 @@ find_package(Curses REQUIRED)
 
 file(GLOB_RECURSE SOURCES "src/**/*.cpp")
 
-add_executable(ncurses_app main.cpp ${SOURCES})
+add_executable(bookstore main.cpp ${SOURCES})
 
-target_include_directories(ncurses_app PRIVATE ${CURSES_INCLUDE_DIRS})
-target_link_libraries(ncurses_app PRIVATE nlohmann_json::nlohmann_json ${CURSES_LIBRARIES} menu)
+target_include_directories(bookstore PRIVATE ${CURSES_INCLUDE_DIRS})
+target_link_libraries(bookstore PRIVATE nlohmann_json::nlohmann_json ${CURSES_LIBRARIES} menu)

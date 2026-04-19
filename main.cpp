@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-constexpr const char* APP_NAME = "Sistem Manajemen Toko Buku Asoy Geboy";
+constexpr const char* APP_NAME = "Gramedia Bookstore Application in the 70's (probably)";
 constexpr const char* APP_VERSION = "0.0.1";
 
 int main() {

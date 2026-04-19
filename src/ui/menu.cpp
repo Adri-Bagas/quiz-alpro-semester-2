@@ -5,7 +5,7 @@
 
 MainMenuUI::MainMenuUI(const std::vector<std::string> &items, const std::string_view app_name,
                        const std::string_view app_version)
-    : choices(items), header_h(3), menu_w(25), selected_text("") {
+    : choices(items), header_h(3), menu_w(35), selected_text("") {
 
     this->app_name = app_name;
     this->app_version = app_version;
