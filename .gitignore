@@ -1,0 +1,9 @@
+build/
+bin/
+*.o
+*.a
+*.so
+.vscode/
+.idea/
+data/*.json
+ncurses_app

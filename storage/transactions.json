@@ -1,0 +1,323 @@
+[
+    {
+        "customer_name": "Adri Bagas",
+        "date": "2026-04-18",
+        "details": [
+            {
+                "book": {
+                    "author": "Steve Klabnik",
+                    "id": 1,
+                    "pages": 552,
+                    "price": 39.9900016784668,
+                    "publisher": "No Starch",
+                    "sold": 0,
+                    "stock": 0,
+                    "title": "Rust Programming",
+                    "year": 2018
+                },
+                "id": 501,
+                "qty": 1
+            },
+            {
+                "book": {
+                    "author": "Robert C. Martin",
+                    "id": 2,
+                    "pages": 464,
+                    "price": 39.9900016784668,
+                    "publisher": "Prentice Hall",
+                    "sold": 0,
+                    "stock": 0,
+                    "title": "Clean Code",
+                    "year": 2008
+                },
+                "id": 502,
+                "qty": 1
+            }
+        ],
+        "id": 1001,
+        "item_total_qty": 2,
+        "total": 79.0
+    },
+    {
+        "customer_name": "Dila Sindy",
+        "date": "2026-04-18",
+        "details": [
+            {
+                "book": {
+                    "author": "Jim Blandy",
+                    "id": 2,
+                    "pages": 700,
+                    "price": 54.9900016784668,
+                    "publisher": "O'Reilly Media",
+                    "sold": 0,
+                    "stock": 0,
+                    "title": "Programming Rust",
+                    "year": 2021
+                },
+                "id": 601,
+                "qty": 1
+            },
+            {
+                "book": {
+                    "author": "Osamu Dazai",
+                    "id": 11,
+                    "pages": 177,
+                    "price": 15.949999809265137,
+                    "publisher": "New Directions",
+                    "sold": 0,
+                    "stock": 0,
+                    "title": "No Longer Human",
+                    "year": 1948
+                },
+                "id": 602,
+                "qty": 1
+            }
+        ],
+        "id": 1002,
+        "item_total_qty": 2,
+        "total": 71.0
+    },
+    {
+        "customer_name": "John Doe",
+        "date": "2026-04-18",
+        "details": [
+            {
+                "book": {
+                    "author": "Haruki Murakami",
+                    "id": 16,
+                    "pages": 296,
+                    "price": 18.0,
+                    "publisher": "Vintage International",
+                    "sold": 0,
+                    "stock": 0,
+                    "title": "Norwegian Wood",
+                    "year": 1987
+                },
+                "id": 603,
+                "qty": 1
+            }
+        ],
+        "id": 1003,
+        "item_total_qty": 1,
+        "total": 18.0
+    },
+    {
+        "customer_name": "Jane Smith",
+        "date": "2026-04-18",
+        "details": [
+            {
+                "book": {
+                    "author": "Haruki Murakami",
+                    "id": 17,
+                    "pages": 505,
+                    "price": 18.950000762939453,
+                    "publisher": "Vintage International",
+                    "sold": 0,
+                    "stock": 0,
+                    "title": "Kafka on the Shore",
+                    "year": 2002
+                },
+                "id": 604,
+                "qty": 2
+            }
+        ],
+        "id": 1004,
+        "item_total_qty": 2,
+        "total": 37.0
+    },
+    {
+        "customer_name": "Bagas Witjaksono",
+        "date": "2026-04-18",
+        "details": [
+            {
+                "book": {
+                    "author": "Jeremy Crawford",
+                    "id": 3,
+                    "pages": 384,
+                    "price": 49.95000076293945,
+                    "publisher": "Wizards of the Coast",
+                    "sold": 0,
+                    "stock": 0,
+                    "title": "D&D 2024 Player's Handbook",
+                    "year": 2024
+                },
+                "id": 605,
+                "qty": 1
+            },
+            {
+                "book": {
+                    "author": "W. Richard Stevens",
+                    "id": 5,
+                    "pages": 960,
+                    "price": 68.0,
+                    "publisher": "Addison-Wesley",
+                    "sold": 0,
+                    "stock": 0,
+                    "title": "Advanced Programming in the UNIX Environment",
+                    "year": 2013
+                },
+                "id": 606,
+                "qty": 1
+            }
+        ],
+        "id": 1005,
+        "item_total_qty": 2,
+        "total": 118.0
+    },
+    {
+        "customer_name": "Dila Sindy",
+        "date": "2026-04-18",
+        "details": [
+            {
+                "book": {
+                    "author": "Michael Kerrisk",
+                    "id": 1,
+                    "pages": 1552,
+                    "price": 89.98999786376953,
+                    "publisher": "No Starch Press",
+                    "sold": 0,
+                    "stock": 0,
+                    "title": "The Linux Programming Interface",
+                    "year": 2010
+                },
+                "id": 607,
+                "qty": 1
+            },
+            {
+                "book": {
+                    "author": "Thomas H. Cormen",
+                    "id": 9,
+                    "pages": 1312,
+                    "price": 95.0,
+                    "publisher": "MIT Press",
+                    "sold": 0,
+                    "stock": 0,
+                    "title": "Introduction to Algorithms",
+                    "year": 2022
+                },
+                "id": 608,
+                "qty": 1
+            }
+        ],
+        "id": 1006,
+        "item_total_qty": 2,
+        "total": 185.0
+    },
+    {
+        "customer_name": "Anonymous",
+        "date": "2026-04-18",
+        "details": [
+            {
+                "book": {
+                    "author": "Haruki Murakami",
+                    "id": 18,
+                    "pages": 607,
+                    "price": 19.950000762939453,
+                    "publisher": "Vintage International",
+                    "sold": 0,
+                    "stock": 0,
+                    "title": "The Wind-Up Bird Chronicle",
+                    "year": 1994
+                },
+                "id": 609,
+                "qty": 1
+            },
+            {
+                "book": {
+                    "author": "Osamu Dazai",
+                    "id": 11,
+                    "pages": 177,
+                    "price": 15.949999809265137,
+                    "publisher": "New Directions",
+                    "sold": 0,
+                    "stock": 0,
+                    "title": "No Longer Human",
+                    "year": 1948
+                },
+                "id": 610,
+                "qty": 1
+            }
+        ],
+        "id": 1007,
+        "item_total_qty": 2,
+        "total": 36.0
+    },
+    {
+        "customer_name": "Jack",
+        "date": "2026-04-19",
+        "details": [
+            {
+                "book": {
+                    "author": "Vook",
+                    "id": 22,
+                    "pages": 21,
+                    "price": 21.0,
+                    "publisher": "VookPub",
+                    "sold": 2,
+                    "stock": 19,
+                    "title": "Test Vook",
+                    "year": 111
+                },
+                "id": 611,
+                "qty": 2
+            },
+            {
+                "book": {
+                    "author": "Jim Blandy",
+                    "id": 2,
+                    "pages": 700,
+                    "price": 54.9900016784668,
+                    "publisher": "O'Reilly Media",
+                    "sold": 12,
+                    "stock": 3,
+                    "title": "Programming Rust",
+                    "year": 2021
+                },
+                "id": 612,
+                "qty": 2
+            },
+            {
+                "book": {
+                    "author": "W. Richard Stevens",
+                    "id": 5,
+                    "pages": 960,
+                    "price": 68.0,
+                    "publisher": "Addison-Wesley",
+                    "sold": 17,
+                    "stock": 7,
+                    "title": "Advanced Programming in the UNIX Environment",
+                    "year": 2013
+                },
+                "id": 613,
+                "qty": 2
+            }
+        ],
+        "id": 1008,
+        "item_total_qty": 6,
+        "total": 287.0
+    },
+    {
+        "customer_name": "Al",
+        "date": "2026-04-19",
+        "details": [
+            {
+                "book": {
+                    "author": "Robert C. Martin",
+                    "id": 8,
+                    "pages": 432,
+                    "price": 38.5,
+                    "publisher": "Prentice Hall",
+                    "sold": 1,
+                    "stock": 0,
+                    "title": "Clean Architecture",
+                    "year": 2017
+                },
+                "id": 1,
+                "qty": 1
+            }
+        ],
+        "id": 1009,
+        "item_total_qty": 1,
+        "total": 38.5
+    }
+]

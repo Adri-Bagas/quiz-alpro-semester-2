@@ -1,0 +1,233 @@
+[
+    {
+        "author": "Michael Kerrisk",
+        "id": 1,
+        "pages": 1552,
+        "price": 89.98999786376953,
+        "publisher": "No Starch Press",
+        "sold": 2,
+        "stock": 5,
+        "title": "The Linux Programming Interface",
+        "year": 2010
+    },
+    {
+        "author": "Jim Blandy",
+        "id": 2,
+        "pages": 700,
+        "price": 54.9900016784668,
+        "publisher": "O'Reilly Media",
+        "sold": 4,
+        "stock": 3,
+        "title": "Programming Rust",
+        "year": 2021
+    },
+    {
+        "author": "Jeremy Crawford",
+        "id": 3,
+        "pages": 384,
+        "price": 49.95000076293945,
+        "publisher": "Wizards of the Coast",
+        "sold": 1,
+        "stock": 10,
+        "title": "D&D 2024 Player's Handbook",
+        "year": 2024
+    },
+    {
+        "author": "Andrew Hunt",
+        "id": 4,
+        "pages": 352,
+        "price": 45.0,
+        "publisher": "Addison-Wesley",
+        "sold": 0,
+        "stock": 10,
+        "title": "The Pragmatic Programmer",
+        "year": 2019
+    },
+    {
+        "author": "W. Richard Stevens",
+        "id": 5,
+        "pages": 960,
+        "price": 68.0,
+        "publisher": "Addison-Wesley",
+        "sold": 3,
+        "stock": 7,
+        "title": "Advanced Programming in the UNIX Environment",
+        "year": 2013
+    },
+    {
+        "author": "Remzi H. Arpaci-Dusseau",
+        "id": 6,
+        "pages": 750,
+        "price": 40.0,
+        "publisher": "Arpaci-Dusseau Books",
+        "sold": 0,
+        "stock": 6,
+        "title": "Operating Systems: Three Easy Pieces",
+        "year": 2018
+    },
+    {
+        "author": "Abraham Silberschatz",
+        "id": 7,
+        "pages": 800,
+        "price": 120.0,
+        "publisher": "McGraw-Hill",
+        "sold": 0,
+        "stock": 12,
+        "title": "Database System Concepts",
+        "year": 2019
+    },
+    {
+        "author": "Robert C. Martin",
+        "id": 8,
+        "pages": 432,
+        "price": 38.5,
+        "publisher": "Prentice Hall",
+        "sold": 1,
+        "stock": 0,
+        "title": "Clean Architecture",
+        "year": 2017
+    },
+    {
+        "author": "Thomas H. Cormen",
+        "id": 9,
+        "pages": 1312,
+        "price": 95.0,
+        "publisher": "MIT Press",
+        "sold": 1,
+        "stock": 12,
+        "title": "Introduction to Algorithms",
+        "year": 2022
+    },
+    {
+        "author": "Jason Gregory",
+        "id": 10,
+        "pages": 1248,
+        "price": 75.0,
+        "publisher": "CRC Press",
+        "sold": 0,
+        "stock": 2,
+        "title": "Game Engine Architecture",
+        "year": 2018
+    },
+    {
+        "author": "Osamu Dazai",
+        "id": 11,
+        "pages": 177,
+        "price": 15.949999809265137,
+        "publisher": "New Directions",
+        "sold": 2,
+        "stock": 10,
+        "title": "No Longer Human",
+        "year": 1948
+    },
+    {
+        "author": "Natsume Soseki",
+        "id": 12,
+        "pages": 256,
+        "price": 14.0,
+        "publisher": "Penguin Classics",
+        "sold": 0,
+        "stock": 10,
+        "title": "Kokoro",
+        "year": 1914
+    },
+    {
+        "author": "Murasaki Shikibu",
+        "id": 13,
+        "pages": 1184,
+        "price": 25.0,
+        "publisher": "Tuttle Publishing",
+        "sold": 0,
+        "stock": 10,
+        "title": "The Tale of Genji",
+        "year": 1008
+    },
+    {
+        "author": "Yasunari Kawabata",
+        "id": 14,
+        "pages": 192,
+        "price": 16.0,
+        "publisher": "Vintage International",
+        "sold": 0,
+        "stock": 10,
+        "title": "Snow Country",
+        "year": 1948
+    },
+    {
+        "author": "Ryunosuke Akutagawa",
+        "id": 15,
+        "pages": 240,
+        "price": 17.0,
+        "publisher": "Penguin Classics",
+        "sold": 0,
+        "stock": 10,
+        "title": "Rashomon and Seventeen Other Stories",
+        "year": 1952
+    },
+    {
+        "author": "Haruki Murakami",
+        "id": 16,
+        "pages": 296,
+        "price": 18.0,
+        "publisher": "Vintage International",
+        "sold": 1,
+        "stock": 10,
+        "title": "Norwegian Wood",
+        "year": 1987
+    },
+    {
+        "author": "Haruki Murakami",
+        "id": 17,
+        "pages": 505,
+        "price": 18.950000762939453,
+        "publisher": "Vintage International",
+        "sold": 2,
+        "stock": 10,
+        "title": "Kafka on the Shore",
+        "year": 2002
+    },
+    {
+        "author": "Haruki Murakami",
+        "id": 18,
+        "pages": 607,
+        "price": 19.950000762939453,
+        "publisher": "Vintage International",
+        "sold": 1,
+        "stock": 10,
+        "title": "The Wind-Up Bird Chronicle",
+        "year": 1994
+    },
+    {
+        "author": "Haruki Murakami",
+        "id": 19,
+        "pages": 925,
+        "price": 25.0,
+        "publisher": "Knopf",
+        "sold": 0,
+        "stock": 10,
+        "title": "1Q84",
+        "year": 2009
+    },
+    {
+        "author": "Hapis",
+        "id": 20,
+        "pages": 100,
+        "price": 10.0,
+        "publisher": "Vintage International",
+        "sold": 0,
+        "stock": 10,
+        "title": "Hard-Boiled Wonderland and the End of the World",
+        "year": 2025
+    },
+    {
+        "author": "Udin",
+        "id": 21,
+        "pages": 100,
+        "price": 10.0,
+        "publisher": "UdinBooks",
+        "sold": 0,
+        "stock": 100,
+        "title": "Life Of Udin",
+        "year": 2025
+    }
+]
