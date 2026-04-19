@@ -358,5 +358,44 @@
         "id": 1010,
         "item_total_qty": 2,
         "total": 93.0
+    },
+    {
+        "customer_name": "Udin",
+        "date": "2026-04-19",
+        "details": [
+            {
+                "book": {
+                    "author": "Abraham Silberschatz",
+                    "id": 7,
+                    "pages": 800,
+                    "price": 120.0,
+                    "publisher": "McGraw-Hill",
+                    "sold": 1,
+                    "stock": 11,
+                    "title": "Database System Concepts",
+                    "year": 2019
+                },
+                "id": 616,
+                "qty": 1
+            },
+            {
+                "book": {
+                    "author": "Haruki Murakami",
+                    "id": 19,
+                    "pages": 925,
+                    "price": 25.0,
+                    "publisher": "Knopf",
+                    "sold": 2,
+                    "stock": 8,
+                    "title": "1Q84",
+                    "year": 2009
+                },
+                "id": 617,
+                "qty": 2
+            }
+        ],
+        "id": 1011,
+        "item_total_qty": 3,
+        "total": 170.0
     }
 ]
