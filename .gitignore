@@ -7,3 +7,4 @@ bin/
 .idea/
 data/*.json
 ncurses_app
+.cache/
