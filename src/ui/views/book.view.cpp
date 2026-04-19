@@ -60,28 +60,33 @@ namespace BookView {
     std::string draw(WINDOW *main_win) {
 
         std::vector<Book> books = BookModel::read();
+        bool show_idr = false;
 
     actually_start_draw:
 
         std::vector<std::string> headers = {"ID", "Title", "Price", "Stock"};
+        
 
         TableUI book_table = make_table<Book>(
             books, 
             headers, 
-            [](const Book &b) {
-
+            [&](const Book &b) {
                 std::stringstream pricestream;
 
-                pricestream << std::fixed << std::setprecision(2) << b.price; 
+                if (show_idr) {
+                    pricestream << "Rp" << std::fixed << std::setprecision(0) << (b.price * 17000.0f);
+                } else {
+                    pricestream << "$" << std::fixed << std::setprecision(2) << b.price;
+                }
 
             return std::vector<std::string>{
                 std::to_string(b.id), 
                 b.title, 
-                "$" + pricestream.str(),                            
+                pricestream.str(),                            
                 std::to_string(b.stock)};
         });
 
-        book_table.actions = {"Create", "Edit", "Search", "View", "Sort", "Delete", "Cancel"};
+        book_table.actions = {"Create", "Edit", "Search", "View", "Sort", "Currency","Delete", "Cancel"};
 
         werase(main_win);
         wborder(main_win, BorderTheme::ls, BorderTheme::rs, BorderTheme::ts, BorderTheme::bs,
@@ -260,6 +265,11 @@ namespace BookView {
 
             delwin(table_win);
             goto actually_start_draw;
+        } else if (action == "Currency") {
+            show_idr = !show_idr;
+            delwin(table_win);
+            goto actually_start_draw;
+            
         } else if (action == "EXIT") {
             delwin(table_win);
             return "EXIT";

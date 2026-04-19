@@ -49,8 +49,8 @@
         "pages": 960,
         "price": 68.0,
         "publisher": "Addison-Wesley",
-        "sold": 3,
-        "stock": 7,
+        "sold": 4,
+        "stock": 6,
         "title": "Advanced Programming in the UNIX Environment",
         "year": 2013
     },
@@ -137,8 +137,8 @@
         "pages": 1184,
         "price": 25.0,
         "publisher": "Tuttle Publishing",
-        "sold": 0,
-        "stock": 10,
+        "sold": 1,
+        "stock": 9,
         "title": "The Tale of Genji",
         "year": 1008
     },

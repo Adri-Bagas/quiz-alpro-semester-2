@@ -318,6 +318,45 @@
         ],
         "id": 1009,
         "item_total_qty": 1,
-        "total": 38.5
+        "total": 38.0
+    },
+    {
+        "customer_name": "S",
+        "date": "2026-04-19",
+        "details": [
+            {
+                "book": {
+                    "author": "W. Richard Stevens",
+                    "id": 5,
+                    "pages": 960,
+                    "price": 68.0,
+                    "publisher": "Addison-Wesley",
+                    "sold": 4,
+                    "stock": 6,
+                    "title": "Advanced Programming in the UNIX Environment",
+                    "year": 2013
+                },
+                "id": 614,
+                "qty": 1
+            },
+            {
+                "book": {
+                    "author": "Murasaki Shikibu",
+                    "id": 13,
+                    "pages": 1184,
+                    "price": 25.0,
+                    "publisher": "Tuttle Publishing",
+                    "sold": 1,
+                    "stock": 9,
+                    "title": "The Tale of Genji",
+                    "year": 1008
+                },
+                "id": 615,
+                "qty": 1
+            }
+        ],
+        "id": 1010,
+        "item_total_qty": 2,
+        "total": 93.0
     }
 ]

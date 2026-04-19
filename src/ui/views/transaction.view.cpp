@@ -20,10 +20,11 @@ namespace TransactionView {
         if (!date) return "Continue";
 
         std::vector<CartItem> cart;
+        bool show_idr = false;
 
     render_cart:
         // Always read fresh in case stock changed
-        std::vector<Book> all_books = BookModel::read();
+        std::vector<Book> books = BookModel::read();
 
         werase(main_win);
         wborder(main_win, BorderTheme::ls, BorderTheme::rs, BorderTheme::ts, BorderTheme::bs,
@@ -43,12 +44,18 @@ namespace TransactionView {
         } else {
             for (const auto& item : cart) {
                 // Find book to get current price and title
-                auto it = std::find_if(all_books.begin(), all_books.end(), [&](const Book& b){ return b.id == item.book_id; });
-                if (it != all_books.end()) {
+                auto it = std::find_if(books.begin(), books.end(), [&](const Book& b){ return b.id == item.book_id; });
+                if (it != books.end()) {
                     float subtotal = it->price * item.qty;
                     running_total += subtotal;
-                    mvwprintw(main_win, current_y++, 2, "%-5d | %-30s | %-5d | $%.2f", 
-                              item.book_id, it->title.substr(0, 28).c_str(), item.qty, subtotal);
+                    
+                    if (show_idr) {
+                        mvwprintw(main_win, current_y++, 2, "%-5d | %-30s | %-5d | Rp%.0f", 
+                                  item.book_id, it->title.substr(0, 28).c_str(), item.qty, subtotal * 17000.0f);
+                    } else {
+                        mvwprintw(main_win, current_y++, 2, "%-5d | %-30s | %-5d | $%.2f", 
+                                  item.book_id, it->title.substr(0, 28).c_str(), item.qty, subtotal);
+                    }
                 }
             }
         }
@@ -59,7 +66,7 @@ namespace TransactionView {
         // 3. Draw Keybinds
         current_y += 2;
         wattron(main_win, A_BOLD);
-        mvwprintw(main_win, current_y, 2, "[A] Add Book   [C] Checkout   [ESC] Cancel Sale");
+        mvwprintw(main_win, current_y, 2, "[A] Add Book  [V] Currency  [C] Checkout  [ESC] Cancel Sale");
         wattroff(main_win, A_BOLD);
         wrefresh(main_win);
 
@@ -89,6 +96,7 @@ namespace TransactionView {
             else if (ch == 'a' || ch == 'A') {
                 goto pick_book;
             }
+            else if (ch == 'v' || ch == 'V') { show_idr = !show_idr; goto render_cart; }
         }
 
     pick_book:
@@ -105,21 +113,25 @@ namespace TransactionView {
 
         std::vector<std::string> headers = {"ID", "Title", "Price", "Stock"};
         
-        TableUI picker_table = make_table<Book>(all_books, headers, [](const Book &b) {
-            std::stringstream price_stream;
-            price_stream << std::fixed << std::setprecision(2) << b.price;
-            return std::vector<std::string>{std::to_string(b.id), b.title, price_stream.str(), std::to_string(b.stock)};
+        TableUI picker_table = make_table<Book>(books, headers, [&](const Book &b) {
+            std::stringstream pricestream;
+            if (show_idr) {
+                pricestream << "Rp" << std::fixed << std::setprecision(0) << (b.price * 16200.0f);
+            } else {
+                pricestream << "$" << std::fixed << std::setprecision(2) << b.price;
+            }
+            return std::vector<std::string>{std::to_string(b.id), b.title, pricestream.str(), std::to_string(b.stock)};
         });
 
         // Override default actions so we don't trigger Create/Edit/Delete here
-        picker_table.actions = {"Add to Cart", "Cancel"};
+        picker_table.actions = {"Add to Cart", "Currency", "Search", "Cancel"};
 
         std::string action = picker_table.run(table_win, 0, 0);
 
         if (action == "Add to Cart") {
             int target_idx = picker_table.get_selected_row();
-            int selected_id = all_books[target_idx].id;
-            int available_stock = all_books[target_idx].stock;
+            int selected_id = books[target_idx].id;
+            int available_stock = books[target_idx].stock;
 
             if (available_stock <= 0) {
                 InputModal::show_error(main_win, "Out of stock!");
@@ -139,6 +151,43 @@ namespace TransactionView {
                     }
                 }
             }
+        } else if (action == "Search") {
+            auto input = InputModal::prompt_string(main_win, "Search for :", false);
+
+            if (!input) {
+                delwin(table_win);
+                goto pick_book;
+            }
+
+            auto to_lower = [](std::string s) {
+                std::transform(s.begin(), s.end(), s.begin(), ::tolower);
+                return s;
+            };
+
+            // Convert search term to lowercase
+            std::string term = input.value();
+            std::transform(term.begin(), term.end(), term.begin(), ::tolower);
+
+            books = BookModel::find_all(
+                [&](const Book &b) {
+                    return to_lower(b.title).find(term) != std::string::npos ||
+                           to_lower(b.author).find(term) != std::string::npos ||
+                           to_lower(b.publisher).find(term) != std::string::npos ||
+                           std::to_string(b.year).find(term) != std::string::npos ||
+                           std::to_string(b.pages).find(term) != std::string::npos ||
+                           std::to_string(b.price).find(term) != std::string::npos ||
+                           std::to_string(b.stock).find(term) != std::string::npos ||
+                           std::to_string(b.sold).find(term) != std::string::npos;
+                },
+                BookModel::read()); // pass freshly read data so search resets properly
+
+            delwin(table_win);
+            goto pick_book;
+
+        } else if (action == "Currency") {
+            show_idr = !show_idr;
+            delwin(table_win);
+            goto pick_book;
         }
 
         // Clean up table window and jump back up to render the updated cart

@@ -1,6 +1,7 @@
 #include "view.hpp"
 #include "../../models/transaction.hpp"
 #include "../../models/book.hpp"
+#include "../../utils/sort.hpp"
 #include "../theme.hpp"
 #include <vector>
 #include <algorithm>
@@ -13,6 +14,7 @@ namespace ReportView {
         // Fetch fresh data
         std::vector<Transaction> txs = TransactionModel::read();
         std::vector<Book> books = BookModel::read();
+        bool show_idr;
 
         // Calculate Revenue and Sales
         float total_revenue = 0.0f;
@@ -22,6 +24,10 @@ namespace ReportView {
             total_revenue += tx.total;
             total_items_sold += tx.item_total_qty;
         }
+
+        SortUtils::timsort(books.data(), books.size(), [](const Book& a, const Book& b) {
+            return a.sold > b.sold;
+        });
 
         // Sort books by 'sold' in descending order
         std::sort(books.begin(), books.end(), [](const Book& a, const Book& b) {
@@ -42,7 +48,11 @@ namespace ReportView {
         wattroff(main_win, A_BOLD);
         
         std::stringstream rev_stream;
-        rev_stream << std::fixed << std::setprecision(2) << total_revenue;
+        if (show_idr) {
+            rev_stream << "Rp" << std::fixed << std::setprecision(0) << (total_revenue * 17000.0f);
+        } else {
+            rev_stream << "$" << std::fixed << std::setprecision(2) << total_revenue;
+        }
         
         mvwprintw(main_win, curr_y++, 3, "%-20s : $%s", "Total Revenue", rev_stream.str().c_str());
         mvwprintw(main_win, curr_y++, 3, "%-20s : %d", "Total Items Sold", total_items_sold);
