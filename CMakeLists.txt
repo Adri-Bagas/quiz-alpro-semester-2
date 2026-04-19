@@ -26,7 +26,7 @@ if(NOT CURSES_FOUND)
         " \n"
         " Please install it using your operating system's package manager:\n"
         "   Ubuntu/Debian   : sudo apt-get install libncurses5-dev libncursesw5-dev\n"
-        "   Fedora/openSUSE : sudo dnf install ncurses-devel\n"
+        "   Fedora/openSUSE : sudo dnf/zypper install ncurses-devel\n"
         "   Arch Linux      : sudo pacman -S ncurses\n"
         "   macOS (Homebrew): brew install ncurses\n"
         "   Windows         : via MSYS2 or just install linux man...\n"
