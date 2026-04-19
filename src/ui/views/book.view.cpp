@@ -2,6 +2,7 @@
 #include "../../controllers/book.controller.hpp"
 #include "../components/input_modal.hpp"
 #include "../components/table.hpp"
+#include "../../utils/sort.hpp"
 #include "../theme.hpp"
 #include "view.hpp"
 #include <iomanip>
@@ -76,9 +77,11 @@ namespace BookView {
             return std::vector<std::string>{
                 std::to_string(b.id), 
                 b.title, 
-                pricestream.str(),                            
+                "$" + pricestream.str(),                            
                 std::to_string(b.stock)};
         });
+
+        book_table.actions = {"Create", "Edit", "Search", "View", "Sort", "Delete", "Cancel"};
 
         werase(main_win);
         wborder(main_win, BorderTheme::ls, BorderTheme::rs, BorderTheme::ts, BorderTheme::bs,
@@ -189,13 +192,20 @@ namespace BookView {
                 goto actually_start_draw;
             }
 
+            auto to_lower = [](std::string s) {
+                std::transform(s.begin(), s.end(), s.begin(), ::tolower);
+                return s;
+            };
+
+            // Convert search term to lowercase
             std::string term = input.value();
+            std::transform(term.begin(), term.end(), term.begin(), ::tolower);
 
             books = BookModel::find_all(
                 [&](const Book &b) {
-                    return b.title.find(term) != std::string::npos ||
-                           b.author.find(term) != std::string::npos ||
-                           b.publisher.find(term) != std::string::npos ||
+                    return to_lower(b.title).find(term) != std::string::npos ||
+                           to_lower(b.author).find(term) != std::string::npos ||
+                           to_lower(b.publisher).find(term) != std::string::npos ||
                            std::to_string(b.year).find(term) != std::string::npos ||
                            std::to_string(b.pages).find(term) != std::string::npos ||
                            std::to_string(b.price).find(term) != std::string::npos ||
@@ -228,6 +238,28 @@ namespace BookView {
             delwin(table_win);
             goto actually_start_draw;
 
+        } else if (action == "Sort") {
+            auto col_str = InputModal::prompt_string(main_win, "Sort by (1:ID, 2:Title, 3:Price, 4:Stock):", true);
+            if (!col_str || col_str->empty()) { delwin(table_win); goto actually_start_draw; }
+
+            auto dir_str = InputModal::prompt_string(main_win, "Order (1:Ascending, 2:Descending):", true);
+            if (!dir_str || dir_str->empty()) { delwin(table_win); goto actually_start_draw; }
+
+            int col = std::stoi(*col_str);
+            int dir = std::stoi(*dir_str);
+
+            // Execute in-place sort on the vector's underlying array
+            SortUtils::timsort(books.data(), books.size(), [col, dir](const Book& a, const Book& b) {
+                bool asc = (dir == 1);
+                if (col == 1) return asc ? (a.id < b.id) : (a.id > b.id);
+                if (col == 2) return asc ? (a.title < b.title) : (a.title > b.title);
+                if (col == 3) return asc ? (a.price < b.price) : (a.price > b.price);
+                if (col == 4) return asc ? (a.stock < b.stock) : (a.stock > b.stock);
+                return a.id < b.id; // default fallback
+            });
+
+            delwin(table_win);
+            goto actually_start_draw;
         } else if (action == "EXIT") {
             delwin(table_win);
             return "EXIT";

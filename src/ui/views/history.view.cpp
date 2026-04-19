@@ -1,6 +1,8 @@
 #include "view.hpp"
 #include "../../models/transaction.hpp"
 #include "../components/table.hpp"
+#include "../components/input_modal.hpp"
+#include "../../utils/sort.hpp"
 #include "../theme.hpp"
 #include <iomanip>
 #include <sstream>
@@ -79,7 +81,7 @@ namespace HistoryView {
         });
 
         // Override standard actions
-        history_table.actions = {"View Details", "Cancel"};
+        history_table.actions = {"View Details", "Search", "Sort", "Cancel"};
 
         werase(main_win);
         wborder(main_win, BorderTheme::ls, BorderTheme::rs, BorderTheme::ts, BorderTheme::bs,
@@ -105,8 +107,61 @@ namespace HistoryView {
                 show_details_modal(main_win, txs[target_idx]);
                 history_table.draw(table_win, 0, 0); 
             }
-        } 
-        else if (action == "Cancel" || action == "EXIT") {
+        } else if (action == "Search") {
+            auto input = InputModal::prompt_string(main_win, "Search for :", false);
+
+            if (!input) {
+                delwin(table_win);
+                goto actually_start_draw;
+            }
+
+            auto to_lower = [](std::string s) {
+                std::transform(s.begin(), s.end(), s.begin(), ::tolower);
+                return s;
+            };
+
+            // Convert search term to lowercase
+            std::string term = input.value();
+            std::transform(term.begin(), term.end(), term.begin(), ::tolower);
+
+            // Filter against a fresh read of the database so consecutive searches don't over-filter
+            txs = TransactionModel::find_all([&](const Transaction &t) {
+                std::stringstream total_stream;
+                total_stream << std::fixed << std::setprecision(2) << t.total;
+                
+                return 
+                std::to_string(t.id).find(term) != std::string::npos || 
+                to_lower(t.date).find(term) != std::string::npos || 
+                to_lower(t.customer_name).find(term) != std::string::npos || 
+                std::to_string(t.item_total_qty).find(term) != std::string::npos || 
+                total_stream.str().find(term) != std::string::npos;
+            }, TransactionModel::read());
+
+            delwin(table_win);
+            goto actually_start_draw;
+        } else if (action == "Sort") {
+            auto col_str = InputModal::prompt_string(main_win, "Sort by (1:ID, 2:Date, 3:Customer, 4:Total):", true);
+            if (!col_str || col_str->empty()) { delwin(table_win); goto actually_start_draw; }
+
+            auto dir_str = InputModal::prompt_string(main_win, "Order (1:Ascending, 2:Descending):", true);
+            if (!dir_str || dir_str->empty()) { delwin(table_win); goto actually_start_draw; }
+
+            int col = std::stoi(*col_str);
+            int dir = std::stoi(*dir_str);
+
+            // Execute in-place sort on the vector's underlying array
+            SortUtils::timsort(txs.data(), txs.size(), [col, dir](const Transaction& a, const Transaction& b) {
+                bool asc = (dir == 1);
+                if (col == 1) return asc ? (a.id < b.id) : (a.id > b.id);
+                if (col == 2) return asc ? (a.date < b.date) : (a.date > b.date);
+                if (col == 3) return asc ? (a.customer_name < b.customer_name) : (a.customer_name > b.customer_name);
+                if (col == 4) return asc ? (a.total < b.total) : ((a.total > b.total));
+                return a.id < b.id; // default fallback
+            });
+
+            delwin(table_win);
+            goto actually_start_draw;
+        } else if (action == "Cancel" || action == "EXIT") {
             delwin(table_win);
             return "Continue";
         }

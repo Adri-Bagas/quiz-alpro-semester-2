@@ -51,7 +51,7 @@ namespace TransactionModel {
         return result;
     }
 
-    std::vector<Transaction> find_all(std::function<bool(const Transaction &)> filter, const std::vector<Transaction>& data) {
+    std::vector<Transaction> find_all(std::function<bool(const Transaction &)> filter, const std::vector<Transaction> data) {
 
         std::vector<Transaction> result;
 
